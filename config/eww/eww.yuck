@@ -1,0 +1,65 @@
+
+(defpoll custom-calendar :interval "999h" "scripts/custom-calendar.sh")
+
+(defwidget calendar-widget []
+  (box :orientation "vertical" :class "calendar-container"
+    (literal :content custom-calendar)
+  ))
+
+(defwindow custom-calendar
+  :monitor '[1, 0]'
+  :namespace "eww-blur"
+  :geometry (geometry :x "10px" :y "10px" :anchor "top left")
+  :stacking "bg" ;; Ubah ke fg agar tidak tertutup jendela lain
+  (calendar-widget))
+
+;; Definisi Window
+(defwindow contoh_widget
+  :monitor '[1, 0]'
+  :geometry (geometry :x "10px" :y "218px" 
+                      :width "250px"  ;; Lebar tetap 250px
+                      :anchor "top left"
+                      :height "1px"   ;; Set kecil, akan otomatis membesar mengikuti konten
+                      :anchor "top left")
+  :stacking "bg"
+  (box_konten))
+
+;; Definisi Widget isi
+(defwidget box_konten []
+  (box :class "kontainer"
+       :orientation "v"
+       :space-evenly false
+  ;; Opsional: teks di tengah
+
+    (image :path "/home/gata/Downloads/widget/121212.png" ;; Menggunakan absolute path agar terbaca
+           :image-width 230           ;; Lebar menyamping pas 250px
+           :preserve-aspect-ratio true ;; Tinggi otomatis mengikuti proporsi foto
+           :class "poto")
+  ) ;; <-- Kurung penutup BOX sekarang di sini (membungkus label dan image)
+)   ;; <-- Kurung penutup DEFWIDGET
+
+
+
+(defwidget activate-linux []
+  (box
+    :class "activate-linux"
+    :orientation "v"
+    :halign "start"
+    :valign "start"
+    (label :xalign 0 :markup "<span font_size=\"large\">Activate Linux</span>")
+    (label :xalign 0 :text "Go to Settings to activate Linux")))
+
+;; Window untuk Monitor 0
+(defwindow activate-linux-mon0
+  :monitor 0
+  :stacking "bg"
+  :geometry (geometry :x "8px" :y "32px" :width "250px" :anchor "bottom right")
+  (activate-linux))
+
+;; Window untuk Monitor 1
+(defwindow activate-linux-mon1
+  :monitor 1
+  :stacking "bg"
+  :geometry (geometry :x "8px" :y "32px" :width "250px" :anchor "bottom right")
+  (activate-linux))
+

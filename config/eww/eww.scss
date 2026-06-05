@@ -1,0 +1,65 @@
+* {
+    all: unset;
+    background-color: transparent;
+    font-family: "opensans";
+    font-weight: bold;
+}
+
+.calendar-container {
+    padding: 6px;
+    border-radius: 12px;
+    background-color: rgba(10,23,26,0.9); // Warna background
+    color: #f8f8f2;
+    min-width: 235px;
+}
+
+.calendar-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #90A180;
+}
+.weekdays {
+    font-size: 14px;
+}
+.weekdays .label {
+    padding: 1px;
+    margin: 1px;
+    color: #ff79c6;
+}
+.calendar-grid .day {
+    min-width: 20px;
+    margin: 1px;
+}
+
+.day {
+    font-size: 13.5;
+    padding: 3px;
+    margin: 1px;
+}
+
+.today {
+    color: rgba(10,23,26,0.9);
+    background-color: #8A866A; 
+    border-radius: 6px;
+    font-weight: bold;
+      padding: 2px;
+}
+
+.kontainer {
+  background-color: rgba(10,23,26,0.9); // Ganti warna sesuai seleramu
+  border-radius: 12px;
+  padding: 8px;
+  margin: 2px;             // Jarak antara tulisan dan tepi background
+  color: #f8f8f2;              // Warna tulisan
+}
+.foto-rounded {
+    border-radius: 12px;
+}
+.activate-linux {
+    color: rgba(250, 250, 250, 0.2);
+
+    &.background {
+        background: none;
+    }
+}
+
