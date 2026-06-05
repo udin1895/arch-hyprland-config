@@ -1,0 +1,1 @@
+kitty --class="btop" -e btop
