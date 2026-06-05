@@ -1,0 +1,164 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 23, // Waybar height (to be removed for auto height)
+    "output": ["HDMI-A-1", "eDP-1"],
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+
+    // Choose the order of the modules
+    "modules-left": [
+        //"custom/power",
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "sway/scratchpad",
+        "custom/media"
+    ],
+    "modules-center": [
+        "hyprland/window",
+    ],
+    "modules-right": [
+       // "tray",
+        "mpd",
+        "pulseaudio",
+        "network",
+        "battery",
+        "battery#bat2",
+        "temperature",
+        "memory",
+        "clock#date",
+        "clock",
+    ],
+    // Modules configuration
+    "custom/power": {
+    "format": " ",
+    "on-click": "sh ~/scripts/power_management.sh",
+},
+    "clock#date": {
+        "format": "{:%d %B}",
+        "format-alt": "{:%d-%m-%Y}",
+        "timezone": "Asia/Jakarta",
+        "tooltip": false
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%I:%M}",
+        "timezone": "Asia/Jakarta",
+        "tooltip": false
+    },
+    "hyprland/workspaces": {
+        "on-click": "activate",
+         "format": "{icon}",
+         "format-icons": {
+                "active": "",
+                "default": ""
+         }
+     },
+     "hyprland/window": {
+    "format": "{class}", // Menggunakan 'class' biasanya langsung menampilkan nama program
+    "separate-outputs": false,
+    "on-click": "sh ~/scripts/power_management.sh",
+    "tooltip": false,
+    "rewrite": {
+        "firefox(.*)": "Firefox",
+        "thunar(.*)": "Thunar",
+        "Visual Studio Code": "VS Code",
+        "Kitty(.*)": "Kitty",
+        "chrome-web.whatsapp.com(.*)": "WhatsApp",
+        "chrome-id.pinterest.com(.*)": "Pinterest",
+        "org.kde.kwrite(.*)": "KWrite",
+        "org.pulseaudio.pavucontrol(.*)": "VolumeControl",
+        "sublime_text(.*)": "Sublime Text",
+        "org.vinegarhq.Sober(.*)": "Sober",
+        "^$": "Desktop" // Teks saat tidak ada jendela yang terbuka
+    }
+},
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "tray": {
+        "icon-size": 11,
+        "spacing": 5,
+        "ignored-device": [
+            "nm-applet"
+    ],
+         "icons": {
+           "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        }
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false,
+    },
+    "memory": {
+        "format": "{}% ",
+        "on-click": "sh ~/scripts/btop.sh",
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "tooltip-format": "{temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "on-click": "sh ~/scripts/btop.sh",
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}",
+        "tooltip-format": "{capacity}%",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "",
+        "format-plugged": "",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "",
+        "format-ethernet": "",
+        "format-disconnected": "",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+        "tooltip-format-ethernet": "{ifname}  ",
+        "tooltip-format-disconnected": "Disconnected  ",
+        "tooltip-format": "{ifname}",
+        "format-linked": "",
+      //  "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "sh ~/scripts/open_yazi.sh"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon}",
+        "tooltip-format": "{volume}% {icon}",
+        "format-bluetooth": "",
+        "format-bluetooth-muted": "",
+        "format-muted": "",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "states": {
+        "low": 0,      // Covers 0% to 39%
+        "medium": 40,  // Covers 40% to 79%
+        "high": 80,    // Covers 80% and above
+        },
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "󰂑",
+            "headset": "󰂑",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "sh ~/scripts/wiremix.sh"
+    },
+}
